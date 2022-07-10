@@ -1,0 +1,71 @@
+package com.example.review_movie.service.Impl;
+
+
+import com.example.review_movie.entity.RoleEntity;
+import com.example.review_movie.entity.UserEntity;
+import com.example.review_movie.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Set;
+
+@Service
+@Transactional
+public class UserServiceImpl implements UserService {
+    @Override
+    public UserEntity findByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public UserEntity findByConfirmationToken(String confirmationToken) {
+        return null;
+    }
+
+    @Override
+    public UserEntity saveUserForMember(UserEntity user) {
+        return null;
+    }
+
+    @Override
+    public UserEntity findById(long id) {
+        return null;
+    }
+
+    @Override
+    public UserEntity updateUserByAdmin(long id, boolean isActive) {
+        return null;
+    }
+
+    @Override
+    public UserEntity updateUser(UserEntity user) {
+        return null;
+    }
+
+    @Override
+    public void changePass(UserEntity user, String newPass) {
+
+    }
+
+    @Override
+    public Page<UserEntity> getAllUser(Set<RoleEntity> role, int page) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> getListUserByRole(Set<RoleEntity> role) {
+        return null;
+    }
+
+    @Override
+    public UserEntity saveUserForAdmin() {
+        return null;
+    }
+
+    @Override
+    public Object create(UserEntity newUser) {
+        return null;
+    }
+}
