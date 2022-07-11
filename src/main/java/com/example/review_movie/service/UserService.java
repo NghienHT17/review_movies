@@ -1,5 +1,6 @@
 package com.example.review_movie.service;
 
+import com.example.review_movie.entity.ReviewEntity;
 import com.example.review_movie.entity.RoleEntity;
 import com.example.review_movie.entity.UserEntity;
 import org.springframework.data.domain.Page;
@@ -22,5 +23,7 @@ public interface UserService {
     List<UserEntity> getListUserByRole(Set<RoleEntity> role);
     UserEntity saveUserForAdmin ();
 
-    Object create(UserEntity newUser);
+    UserEntity create(UserEntity newUser);
+
+    List<ReviewEntity> getAllReview(long id);
 }

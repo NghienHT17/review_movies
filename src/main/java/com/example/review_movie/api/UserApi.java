@@ -34,8 +34,8 @@ public class UserApi {
     }
 
     @GetMapping("/all/review-list/{id}")
-    public List<ReviewEntity> getListReview(@PathVariable long id){
+    public ResponseEntity<List<ReviewEntity>> getListReview(@PathVariable long id){
         log.info("Get all review with by user with id = "+id);
-        return ResponseEntity.ok(userService.getAllReview(id))
+        return ResponseEntity.ok(userService.getAllReview(id));
     }
 }

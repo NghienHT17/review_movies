@@ -1,9 +1,12 @@
 package com.example.review_movie.service.Impl;
 
 
+import com.example.review_movie.entity.ReviewEntity;
 import com.example.review_movie.entity.RoleEntity;
 import com.example.review_movie.entity.UserEntity;
+import com.example.review_movie.repository.UserRepo;
 import com.example.review_movie.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ import java.util.Set;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+    @Autowired
+    public UserRepo userRepo;
+
     @Override
     public UserEntity findByEmail(String email) {
         return null;
@@ -65,7 +71,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Object create(UserEntity newUser) {
+    public UserEntity create(UserEntity newUser) {
+        UserEntity _user = new UserEntity();
+        _user.setEmail(newUser.getEmail());
+        _user.setDob(newUser.getDob());
+        _user.setRole("user");
+
+        return userRepo.save(_user);
+    }
+
+    @Override
+    public List<ReviewEntity> getAllReview(long id) {
         return null;
     }
 }
