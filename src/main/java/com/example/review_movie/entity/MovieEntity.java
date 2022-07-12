@@ -2,7 +2,7 @@ package com.example.review_movie.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.minidev.json.annotate.JsonIgnore;
+//import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,7 +35,7 @@ public class MovieEntity {
     private String posterLink;
 
     @Transient
-    @JsonIgnore
+//    @JsonIgnore
     private List<CasterEntity> listCaster;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)

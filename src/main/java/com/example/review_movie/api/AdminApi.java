@@ -1,7 +1,9 @@
 package com.example.review_movie.api;
 
+import com.example.review_movie.entity.MovieEntity;
 import com.example.review_movie.entity.RoleEntity;
 import com.example.review_movie.entity.UserEntity;
+import com.example.review_movie.service.MovieService;
 import com.example.review_movie.service.RoleService;
 import com.example.review_movie.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,9 @@ public class AdminApi {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private MovieService movieService;
+
     @GetMapping("/all/user")
     public Page<UserEntity> getAllUser(@RequestParam(defaultValue = "1") int page){
         Set<RoleEntity> roleSet = new HashSet<>();
@@ -34,6 +39,12 @@ public class AdminApi {
     public ResponseEntity<UserEntity> update(@PathVariable("id") Long id,@RequestBody boolean isActive){
         log.info("Update activate user with ID = "+id);
         return ResponseEntity.ok(userService.updateUserByAdmin(id, isActive));
+    }
+
+    @PostMapping("/create-film/")
+    public ResponseEntity<MovieEntity> addMovie (@RequestBody MovieEntity movie){
+        log.info("create movie with name = "+movie.getMovieName());
+        return ResponseEntity.ok(movieService.addMovie(movie));
     }
 
 }

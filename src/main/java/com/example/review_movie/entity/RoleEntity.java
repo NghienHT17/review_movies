@@ -1,6 +1,6 @@
 package com.example.review_movie.entity;
 
-import net.minidev.json.annotate.JsonIgnore;
+//import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ public class RoleEntity {
 
     private String roleName;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToMany(mappedBy = "role")
     private Set<UserEntity> user;
 

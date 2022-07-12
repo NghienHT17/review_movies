@@ -1,10 +1,11 @@
 package com.example.review_movie.entity;
 
+import com.example.review_movie.dto.UserRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.minidev.json.annotate.JsonIgnore;
+//import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,8 +16,10 @@ import java.util.Set;
 @Table(name = "user")
 @Getter
 @Setter
-//@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+//@AllArgsConstructor
+
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +35,11 @@ public class UserEntity {
 
     private String picLink;
 
-    @JsonIgnore
+//    @JsonIgnore
     private String password;
 
     @Transient
-    @JsonIgnore
+//    @JsonIgnore
     private String confirmPassword;
 
     @ManyToMany
@@ -46,10 +49,12 @@ public class UserEntity {
     private Set<RoleEntity> role;
 
     @Transient
-    @JsonIgnore
+//    @JsonIgnore
     private List<ReviewEntity> reviewList;
 
 
-    public UserEntity(Object o) {
+    public UserEntity toEntity(UserRequestDto dto) {
+        this.email = dto.getEmail();
+        return this;
     }
 }
