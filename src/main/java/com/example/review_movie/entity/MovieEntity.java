@@ -2,12 +2,10 @@ package com.example.review_movie.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-//import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "movie")
@@ -17,7 +15,7 @@ import java.util.Set;
 public class MovieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int movieId;
+    private long movieId;
 
     @Column(name = "name")
     private String movieName;
@@ -41,12 +39,9 @@ public class MovieEntity {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<ReviewEntity> listReview;
 
-
-
-
-
-
-
-
-
+    public MovieEntity() {
+        this.movieName = movieName;
+        this.tittle = tittle;
+        this.description = description;
+    }
 }

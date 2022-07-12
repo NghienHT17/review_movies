@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Transient;
 import java.util.Date;
 
 @Getter
@@ -26,7 +25,6 @@ public class UserRequestDto {
     private String confirmPassword;
 
     private Date dob;
-
 
 
 }

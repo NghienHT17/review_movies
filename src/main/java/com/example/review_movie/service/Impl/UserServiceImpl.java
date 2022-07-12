@@ -5,10 +5,12 @@ import com.example.review_movie.dto.UserRequestDto;
 import com.example.review_movie.entity.ReviewEntity;
 import com.example.review_movie.entity.RoleEntity;
 import com.example.review_movie.entity.UserEntity;
+import com.example.review_movie.repository.ReviewRepository;
 import com.example.review_movie.repository.UserRepository;
 import com.example.review_movie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,6 +24,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ReviewRepository reviewRepository;
+
     @Override
     public UserEntity findByEmail(String email) {
         return null;
@@ -44,22 +50,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity updateUserByAdmin(long id, boolean isActive) {
-        return null;
+        Optional<UserEntity> userEntity = userRepository.findById(id);
+        if (userEntity.isPresent()) {
+            UserEntity updatingUser = userEntity.get();
+            updatingUser.setActive(isActive);
+            return userRepository.save(updatingUser);
+        } else return null;
     }
 
     @Override
     public UserEntity updateUser(UserRequestDto dto) {
         Optional<UserEntity> userEntity = userRepository.findById(dto.getUserId());
-        if (userEntity.isPresent()){
+        if (userEntity.isPresent()) {
             UserEntity updatingUser = userEntity.get();
             updatingUser.setEmail(dto.getEmail());
             updatingUser.setName(dto.getEmail());
             updatingUser.setPassword(dto.getPassword());
             updatingUser.setDob(dto.getDob());
             return userRepository.save(updatingUser);
-        }
-
-        else return null;
+        } else return null;
 
     }
 
@@ -69,8 +78,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserEntity> getAllUser(Set<RoleEntity> role, int page) {
-        return null;
+    public Page<UserEntity> getAllUser(Set<RoleEntity> roleSet, int page) {
+        return userRepository.findByRole(roleSet, PageRequest.of(page - 1, 6));
     }
 
     @Override
@@ -84,8 +93,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<ReviewEntity> getAllReview(long id) {
-        return null;
+    public List<ReviewEntity> getAllReview(long userId) {
+//        UserEntity user = new UserEntity();
+//        user = userRepository.findByUserId(userId);
+        List<ReviewEntity> listReview = reviewRepository.findByUserId(userId);
+//        if (user == null){
+//            return null;
+//        }
+        return listReview;
     }
 
     @Override

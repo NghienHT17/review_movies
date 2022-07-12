@@ -24,11 +24,10 @@ public class MovieApi {
     MovieService movieService;
 
     @GetMapping("/all")
-    public ResponseEntity<Page<MovieEntity>> getAllMovie(@RequestParam(defaultValue = "1") int page){
+    public ResponseEntity<Page<MovieEntity>> getAllMovie(@RequestParam(defaultValue = "1") int page) {
         Page<MovieEntity> listMovie = movieService.getAllMovie(page);
-        return  ResponseEntity.ok(listMovie);
+        return ResponseEntity.ok(listMovie);
     }
-
 
 
 }

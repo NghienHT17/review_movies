@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -25,21 +24,21 @@ public class UserApi {
     private RoleService roleService;
 
     @PostMapping("/create")
-    public ResponseEntity<UserResponseDto> create(@RequestBody UserRequestDto newUserDto){
+    public ResponseEntity<UserResponseDto> create(@RequestBody UserRequestDto newUserDto) {
         log.info("Create new user with email ={}", newUserDto.getEmail());
-        System.err.println("Create new user with email ={}"+ newUserDto.getEmail());
+        System.err.println("Create new user with email ={}" + newUserDto.getEmail());
         return ResponseEntity.ok(new UserResponseDto(userService.create(newUserDto)));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<UserEntity> update(@RequestBody UserRequestDto updateUser){
-        log.info("Update user with id = "+updateUser.getUserId());
+    public ResponseEntity<UserEntity> update(@RequestBody UserRequestDto updateUser) {
+        log.info("Update user with id = " + updateUser.getUserId());
         return ResponseEntity.ok(userService.updateUser(updateUser));
     }
 
-    @GetMapping("/all/review-list/{id}")
-    public ResponseEntity<List<ReviewEntity>> getListReview(@PathVariable long id){
-        log.info("Get all review with by user with id = "+id);
+    @GetMapping("/get-all-review-list/{id}")
+    public ResponseEntity<List<ReviewEntity>> getListReview(@PathVariable long id) {
+        log.info("Get all review with by user with id = " + id);
         return ResponseEntity.ok(userService.getAllReview(id));
     }
 }

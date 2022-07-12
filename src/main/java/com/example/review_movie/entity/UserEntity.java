@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-//import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,11 +22,13 @@ import java.util.Set;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private long userId;
 
     private String name;
 
     private Date dob;
+
+    private boolean isActive;
 
     private String email;
 
@@ -35,7 +36,7 @@ public class UserEntity {
 
     private String picLink;
 
-//    @JsonIgnore
+    //    @JsonIgnore
     private String password;
 
     @Transient
@@ -44,8 +45,8 @@ public class UserEntity {
 
     @ManyToMany
     @JoinTable(name = "user_role",
-                joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> role;
 
     @Transient

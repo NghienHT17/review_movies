@@ -13,16 +13,24 @@ import java.util.Set;
 public interface UserService {
 
     UserEntity findByEmail(String email);
+
     UserEntity findByConfirmationToken(String confirmationToken);
+
     UserEntity saveUserForMember(UserEntity user);
+
     UserEntity findById(long id);
+
     UserEntity updateUser(UserRequestDto user);
 
     UserEntity updateUserByAdmin(long id, boolean isActive);
+
     void changePass(UserEntity user, String newPass);
-    Page<UserEntity> getAllUser(Set<RoleEntity> role, int page);
+
+    Page<UserEntity> getAllUser(Set<RoleEntity> roleName, int page);
+
     List<UserEntity> getListUserByRole(Set<RoleEntity> role);
-    UserEntity saveUserForAdmin ();
+
+    UserEntity saveUserForAdmin();
 
     UserEntity create(UserRequestDto newUser);
 
