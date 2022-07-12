@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class CasterEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int casterId;
+    long casterId;
 
     String acting;
 

@@ -28,23 +28,23 @@ public class AdminApi {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/all/user")
-    public Page<UserEntity> getAllUser(@RequestParam(defaultValue = "1") int page){
+    @GetMapping("/get-all-user")
+    public Page<UserEntity> getAllUser(@RequestParam(defaultValue = "1") int page) {
         Set<RoleEntity> roleSet = new HashSet<>();
         roleSet.add(roleService.findByRole("user"));
         return userService.getAllUser(roleSet, page);
     }
 
-    @PutMapping("/update/user/{id}")
-    public ResponseEntity<UserEntity> update(@PathVariable("id") Long id,@RequestBody boolean isActive){
-        log.info("Update activate user with ID = "+id);
+    @PutMapping("/update-user/{id}")
+    public ResponseEntity<UserEntity> update(@PathVariable("id") Long id, @RequestBody boolean isActive) {
+        log.info("Update activate user with ID = " + id);
         return ResponseEntity.ok(userService.updateUserByAdmin(id, isActive));
     }
 
     @PostMapping("/create-film/")
-    public ResponseEntity<MovieEntity> addMovie (@RequestBody MovieEntity movie){
-        log.info("create movie with name = "+movie.getMovieName());
-        return ResponseEntity.ok(movieService.addMovie(movie));
+    public ResponseEntity<MovieEntity> addMovie(@RequestBody MovieEntity newMovie) {
+        log.info("create movie with name = " + newMovie.getMovieName());
+        return ResponseEntity.ok(movieService.addMovie(newMovie));
     }
 
 }

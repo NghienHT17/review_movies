@@ -8,7 +8,8 @@ import lombok.Setter;
 @Setter
 public class UserResponseDto {
     private String email;
-    public UserResponseDto(UserEntity entity){
+
+    public UserResponseDto(UserEntity entity) {
         super();
         email = entity.getEmail();
     }
