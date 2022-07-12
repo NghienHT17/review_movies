@@ -20,7 +20,7 @@ public interface UserService {
 
     UserEntity updateUserByAdmin(long id, boolean isActive);
     void changePass(UserEntity user, String newPass);
-    Page<UserEntity> getAllUser(Set<RoleEntity> role, int page);
+    Page<UserEntity> getAllUser(Set<RoleEntity> roleName, int page);
     List<UserEntity> getListUserByRole(Set<RoleEntity> role);
     UserEntity saveUserForAdmin ();
 

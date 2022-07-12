@@ -23,11 +23,13 @@ import java.util.Set;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private long userId;
 
     private String name;
 
     private Date dob;
+
+    private boolean isActive;
 
     private String email;
 
