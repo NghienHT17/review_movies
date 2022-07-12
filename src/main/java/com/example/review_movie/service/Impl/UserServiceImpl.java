@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static jdk.internal.org.jline.utils.Colors.h;
-
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -61,8 +59,8 @@ public class UserServiceImpl implements UserService {
             return userRepository.save(updatingUser);
         }
 
+        else return null;
 
-        return userRepository.save(userEntity);
     }
 
     @Override

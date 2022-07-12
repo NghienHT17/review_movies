@@ -32,7 +32,7 @@ public class UserApi {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Optional<UserEntity>> update(@RequestBody UserRequestDto updateUser){
+    public ResponseEntity<UserEntity> update(@RequestBody UserRequestDto updateUser){
         log.info("Update user with id = "+updateUser.getUserId());
         return ResponseEntity.ok(userService.updateUser(updateUser));
     }
