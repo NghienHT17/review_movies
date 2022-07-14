@@ -62,7 +62,9 @@ public class UserServiceImpl implements UserService {
     public UserEntity updateUser(UserRequestDto dto) {
         Optional<UserEntity> userEntity = userRepository.findById(dto.getUserId());
         if (userEntity.isPresent()) {
+
             UserEntity updatingUser = userEntity.get();
+            System.err.println(updatingUser.getUserId());
             updatingUser.setEmail(dto.getEmail());
             updatingUser.setName(dto.getEmail());
             updatingUser.setPassword(dto.getPassword());

@@ -29,9 +29,9 @@ public class AdminApi {
     private MovieService movieService;
 
     @GetMapping("/get-all-user")
-    public Page<UserEntity> getAllUser(@RequestParam(defaultValue = "1") int page) {
+    public Page<UserEntity> getAllUser(@RequestParam("roleName") String roleName,@RequestParam(defaultValue = "1") int page) {
         Set<RoleEntity> roleSet = new HashSet<>();
-        roleSet.add(roleService.findByRole("user"));
+        roleSet.add(roleService.findByRole(roleName));
         return userService.getAllUser(roleSet, page);
     }
 
