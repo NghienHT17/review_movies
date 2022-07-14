@@ -14,14 +14,12 @@ import java.util.List;
 
 public class MovieEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long movieId;
 
     @Column(name = "name")
     private String movieName;
 
-    @Column(name = "tittle")
-    private String tittle;
 
     @Column(name = "release_date")
     private Date releaseDate;
@@ -41,7 +39,6 @@ public class MovieEntity {
 
     public MovieEntity() {
         this.movieName = movieName;
-        this.tittle = tittle;
         this.description = description;
     }
 }

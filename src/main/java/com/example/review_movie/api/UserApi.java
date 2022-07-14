@@ -24,10 +24,10 @@ public class UserApi {
     private RoleService roleService;
 
     @PostMapping("/create")
-    public ResponseEntity<UserResponseDto> create(@RequestBody UserRequestDto newUserDto) {
+    public ResponseEntity<UserEntity> create(@RequestBody UserRequestDto newUserDto) {
         log.info("Create new user with email ={}", newUserDto.getEmail());
         System.err.println("Create new user with email ={}" + newUserDto.getEmail());
-        return ResponseEntity.ok(new UserResponseDto(userService.create(newUserDto)));
+        return ResponseEntity.ok(userService.create(newUserDto));
     }
 
     @PutMapping("/update/{id}")
