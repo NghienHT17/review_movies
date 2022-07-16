@@ -4,6 +4,7 @@ import com.example.review_movie.dto.UserRequestDto;
 import com.example.review_movie.dto.UserResponseDto;
 import com.example.review_movie.entity.ReviewEntity;
 import com.example.review_movie.entity.UserEntity;
+import com.example.review_movie.service.Impl.UserServiceImpl;
 import com.example.review_movie.service.RoleService;
 import com.example.review_movie.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserApi {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
     private RoleService roleService;

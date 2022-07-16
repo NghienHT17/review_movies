@@ -1,8 +1,10 @@
 package com.example.review_movie.api;
 
+import com.example.review_movie.domain.response.ListUserResponse;
 import com.example.review_movie.entity.MovieEntity;
 import com.example.review_movie.entity.RoleEntity;
 import com.example.review_movie.entity.UserEntity;
+import com.example.review_movie.service.Impl.UserServiceImpl;
 import com.example.review_movie.service.MovieService;
 import com.example.review_movie.service.RoleService;
 import com.example.review_movie.service.UserService;
@@ -20,7 +22,7 @@ import java.util.Set;
 @RequestMapping("/admin")
 public class AdminApi {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
     private RoleService roleService;
@@ -28,11 +30,15 @@ public class AdminApi {
     @Autowired
     private MovieService movieService;
 
+//    @GetMapping("/get-all-user")
+//    public Page<UserEntity> getAllUser(@RequestHeader("Authorization"),@RequestParam(defaultValue = "1") int page) {
+//        Set<RoleEntity> roleSet = new HashSet<>();
+//        roleSet.add(roleService.findByRole(roleName));
+//        return userService.getAllUser(roleSet, page);
+//    }
     @GetMapping("/get-all-user")
-    public Page<UserEntity> getAllUser(@RequestParam("roleName") String roleName,@RequestParam(defaultValue = "1") int page) {
-        Set<RoleEntity> roleSet = new HashSet<>();
-        roleSet.add(roleService.findByRole(roleName));
-        return userService.getAllUser(roleSet, page);
+    public  ResponseEntity<ListUserResponse> getAllUser(@RequestHeader("Authorization") String token) {
+        return ResponseEntity.ok(userService.getListUser(token));
     }
 
     @PutMapping("/update-user/{id}")
