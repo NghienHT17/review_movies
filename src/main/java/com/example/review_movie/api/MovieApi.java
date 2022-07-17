@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/movie")
+/**
+ * これは、2つのエンドポイントを公開するRESTコントローラーです。
+ * 
+ * /all-すべての映画のリストを返します
+ * / {id}/reviews-特定の映画のすべてのレビューのリストを返します
+ */
 public class MovieApi {
 
     @Autowired
@@ -24,6 +30,7 @@ public class MovieApi {
     MovieService movieService;
 
     @GetMapping("/all")
+    // これは、すべての映画のリストを返すメソッドです。
     public ResponseEntity<Page<MovieEntity>> getAllMovie(@RequestParam(defaultValue = "1") int page) {
         Page<MovieEntity> listMovie = movieService.getAllMovie(page);
         return ResponseEntity.ok(listMovie);
