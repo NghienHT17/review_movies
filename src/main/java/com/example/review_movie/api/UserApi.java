@@ -16,6 +16,9 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/user")
+/**
+ * UserApiクラスは、UserServiceクラスのエンドポイントを公開するRESTコントローラーです。
+ */
 public class UserApi {
     @Autowired
     private UserService userService;
@@ -24,6 +27,7 @@ public class UserApi {
     private RoleService roleService;
 
     @PostMapping("/create")
+    // これは、新しいユーザーを作成する方法です。
     public ResponseEntity<UserEntity> create(@RequestBody UserRequestDto newUserDto) {
         log.info("Create new user with email ={}", newUserDto.getEmail());
         System.err.println("Create new user with email ={}" + newUserDto.getEmail());
@@ -31,12 +35,14 @@ public class UserApi {
     }
 
     @PutMapping("/update/{id}")
+    // これは、ユーザー情報を更新する方法です。
     public ResponseEntity<UserEntity> update(@RequestBody UserRequestDto updateUser) {
         log.info("Update user with id = " + updateUser.getUserId());
         return ResponseEntity.ok(userService.updateUser(updateUser));
     }
 
     @GetMapping("/get-all-review-list/{id}")
+    // これは、id=idのユーザーによるすべてのレビューを取得するためのメソッドです。
     public ResponseEntity<List<ReviewEntity>> getListReview(@PathVariable long id) {
         log.info("Get all review with by user with id = " + id);
         return ResponseEntity.ok(userService.getAllReview(id));
