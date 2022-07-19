@@ -17,6 +17,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Page<UserEntity> findByRole(Set<RoleEntity> roleSet, Pageable of);
 
     UserEntity findByUserId(long id);
+
+    UserEntity findByEmail(String email);
 }
 
 

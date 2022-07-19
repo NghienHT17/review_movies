@@ -29,7 +29,7 @@ public class UserEntity {
     private Date dob;
 
     private boolean isActive;
-
+    @Column(unique=true)
     private String email;
 
     private Date joinDate;
