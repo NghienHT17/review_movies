@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class MovieEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long movieId;
 
     @Column(name = "name")
@@ -22,7 +23,9 @@ public class MovieEntity {
 
 
     @Column(name = "release_date")
-    private Date releaseDate;
+    private String releaseDate;
+
+    private String imdbId;
 
     @Column(name = "description")
     private String description;

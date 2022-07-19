@@ -1,5 +1,6 @@
 package com.example.review_movie.api;
 
+import com.example.review_movie.dto.FilmDto;
 import com.example.review_movie.entity.MovieEntity;
 import com.example.review_movie.entity.RoleEntity;
 import com.example.review_movie.entity.UserEntity;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Slf4j
@@ -36,15 +38,21 @@ public class AdminApi {
     }
 
     @PutMapping("/update-user/{id}")
-    public ResponseEntity<UserEntity> update(@PathVariable("id") Long id, @RequestBody boolean isActive) {
+    public ResponseEntity<UserEntity> update(@PathVariable("id") Long id, @RequestHeader boolean isActive) {
         log.info("Update activate user with ID = " + id);
         return ResponseEntity.ok(userService.updateUserByAdmin(id, isActive));
     }
 
-    @PostMapping("/create-film/")
+    @PostMapping("/create-film")
     public ResponseEntity<MovieEntity> addMovie(@RequestBody MovieEntity newMovie) {
         log.info("create movie with name = " + newMovie.getMovieName());
         return ResponseEntity.ok(movieService.addMovie(newMovie));
+    }
+
+    @PostMapping("/create-list-movie")
+    public void addListMovie(@RequestBody List<FilmDto> listFilmDtos){
+        log.info("create list movies");
+        movieService.addListMovie(listFilmDtos);
     }
 
 }
